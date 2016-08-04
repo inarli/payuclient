@@ -1,6 +1,6 @@
 <?php
 /**
- * Payuclient currency component
+ * Payuclient currency component.
  */
 namespace Payu\Component;
 
@@ -15,7 +15,7 @@ class Currency implements ComponentInterface
     private $code;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $code Three letter currency code.
      */

@@ -1,13 +1,13 @@
 <?php
+
 namespace Payu\Component;
 
 class Product implements ComponentInterface
 {
+    const PRICE_TYPE_NET = 'NET';
 
-    const PRICE_TYPE_NET    = 'NET';
+    const PRICE_TYPE_GROSS = 'GROSS';
 
-    const PRICE_TYPE_GROSS  = 'GROSS';
-    
     /**
      * @var string
      */
@@ -19,7 +19,7 @@ class Product implements ComponentInterface
     private $code;
 
     /**
-     * @var integer
+     * @var int
      */
     private $quantity = 1;
 
@@ -39,7 +39,7 @@ class Product implements ComponentInterface
     private $version;
 
     /**
-     * @var integer
+     * @var int
      */
     private $vat;
 
@@ -49,7 +49,7 @@ class Product implements ComponentInterface
     private $priceType;
 
     /**
-     * If you set vat value, the price should calculate without vat
+     * If you set vat value, the price should calculate without vat.
      *
      * @param null $name
      * @param null $code
@@ -80,9 +80,9 @@ class Product implements ComponentInterface
         $this->setPriceType($priceType);
     }
 
-
     /**
      * @param string $code
+     *
      * @return $this
      */
     public function setCode($code)
@@ -102,6 +102,7 @@ class Product implements ComponentInterface
 
     /**
      * @param string $info
+     *
      * @return $this
      */
     public function setInfo($info)
@@ -121,6 +122,7 @@ class Product implements ComponentInterface
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -140,6 +142,7 @@ class Product implements ComponentInterface
 
     /**
      * @param float $price
+     *
      * @return $this
      */
     public function setPrice($price)
@@ -158,7 +161,8 @@ class Product implements ComponentInterface
     }
 
     /**
-     * @param integer $quantity
+     * @param int $quantity
+     *
      * @return $this
      */
     public function setQuantity($quantity)
@@ -169,7 +173,7 @@ class Product implements ComponentInterface
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getQuantity()
     {
@@ -178,6 +182,7 @@ class Product implements ComponentInterface
 
     /**
      * @param string $version
+     *
      * @return $this
      */
     public function setVersion($version)
@@ -198,7 +203,7 @@ class Product implements ComponentInterface
     /**
      * Gets the value of vat.
      *
-     * @return integer
+     * @return int
      */
     public function getVat()
     {
@@ -208,7 +213,7 @@ class Product implements ComponentInterface
     /**
      * Sets the value of vat.
      *
-     * @param integer $vat
+     * @param int $vat
      *
      * @return self
      */
@@ -238,6 +243,4 @@ class Product implements ComponentInterface
 
         return $this;
     }
-
-
 }

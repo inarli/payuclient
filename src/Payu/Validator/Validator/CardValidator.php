@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Validator\Validator;
 
 use Payu\Component\Card;
@@ -7,28 +8,30 @@ use Payu\Exception\ValidationError;
 class CardValidator extends ValidatorAbstract
 {
     /**
-     * @return void
      * @throws \Payu\Exception\ValidationError
+     *
+     * @return void
      */
     protected function validateObject()
     {
         /**
-         * @var $object \Payu\Component\Card
+         * @var \Payu\Component\Card
          */
         $object = $this->request->getCard();
-        if(!$object || !$object instanceof Card) {
+        if (!$object || !$object instanceof Card) {
             throw new ValidationError('Card number does not be empty.');
         }
     }
 
     /**
-     * @return void
      * @throws \Payu\Exception\ValidationError
+     *
+     * @return void
      */
     private function validateLuhn()
     {
         /**
-         * @var $card \Payu\Component\Card
+         * @var \Payu\Component\Card
          */
         $card = $this->request->getCard();
 
@@ -37,7 +40,7 @@ class CardValidator extends ValidatorAbstract
         $number = $card->getNumber();
         $length = strlen($number);
 
-        for($i = $length -2; $i >= 0; $i--) {
+        for ($i = $length - 2; $i >= 0; $i--) {
             $digit = $weight * $number[$i];
             $sum += floor($digit / 10) + $digit % 10;
             $weight = $weight % 2 + 1;
@@ -51,24 +54,22 @@ class CardValidator extends ValidatorAbstract
     private function validateExpireDate()
     {
         /**
-         * @var $card \Payu\Component\Card
+         * @var \Payu\Component\Card
          */
         $card = $this->request->getCard();
         $cardExpireTime = strtotime(
             date('Y-m-t', strtotime(sprintf('%d-%02d-1', $card->getYear(), $card->getMonth()))
         ));
 
-        if(strtotime(date('Y-m-d')) > $cardExpireTime) {
+        if (strtotime(date('Y-m-d')) > $cardExpireTime) {
             throw new ValidationError('Card is expired');
         }
-
-
-
     }
 
     /**
-     * @return void
      * @throws \Payu\Exception\ValidationError
+     *
+     * @return void
      */
     public function validate()
     {

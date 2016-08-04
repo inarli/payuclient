@@ -1,10 +1,11 @@
 <?php
+
 namespace Payu\Response;
 
 class LoyaltyInquiryResponse extends ResponseAbstract
 {
     /**
-     * @var integer
+     * @var int
      */
     private $points;
 
@@ -29,7 +30,7 @@ class LoyaltyInquiryResponse extends ResponseAbstract
     private $cardProgramName;
 
     /**
-     * @return integer
+     * @return int
      */
     public function getPoints()
     {
@@ -69,12 +70,11 @@ class LoyaltyInquiryResponse extends ResponseAbstract
     }
 
     /**
-     * @param integer $status
+     * @param int    $status
      * @param string $code
      * @param string $message
      */
-    public function __construct
-    (
+    public function __construct(
         $status,
         $code,
         $message,
@@ -83,8 +83,7 @@ class LoyaltyInquiryResponse extends ResponseAbstract
         $currency,
         $bank,
         $cardProgramName
-    )
-    {
+    ) {
         parent::__construct($status, $code, $message);
         $this->points = $points;
         $this->amount = $amount;
@@ -92,4 +91,4 @@ class LoyaltyInquiryResponse extends ResponseAbstract
         $this->bank = $bank;
         $this->cardProgramName = $cardProgramName;
     }
-} 
+}

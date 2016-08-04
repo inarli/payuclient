@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Response;
 
 abstract class ResponseAbstract
@@ -9,7 +10,7 @@ abstract class ResponseAbstract
     const STATUS_FAILED = 500;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $status;
 
@@ -25,11 +26,13 @@ abstract class ResponseAbstract
 
     /**
      * @param string $code
+     *
      * @return $this
      */
     public function setCode($code)
     {
         $this->code = $code;
+
         return $this;
     }
 
@@ -43,11 +46,13 @@ abstract class ResponseAbstract
 
     /**
      * @param string $message
+     *
      * @return $this
      */
     public function setMessage($message)
     {
         $this->message = $message;
+
         return $this;
     }
 
@@ -61,11 +66,13 @@ abstract class ResponseAbstract
 
     /**
      * @param int $status
+     *
      * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -78,7 +85,7 @@ abstract class ResponseAbstract
     }
 
     /**
-     * @param integer $status
+     * @param int    $status
      * @param string $code
      * @param string $message
      */
@@ -88,4 +95,4 @@ abstract class ResponseAbstract
         $this->setCode($code);
         $this->setMessage($message);
     }
-} 
+}

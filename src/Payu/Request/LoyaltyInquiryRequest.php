@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Request;
 
 class LoyaltyInquiryRequest extends RequestAbstract
@@ -64,4 +65,4 @@ class LoyaltyInquiryRequest extends RequestAbstract
         $this->setCard($card);
         $this->setCurrency($currency);
     }
-} 
+}

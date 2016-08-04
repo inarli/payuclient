@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Component;
 
 class Order implements ComponentInterface
@@ -10,7 +11,7 @@ class Order implements ComponentInterface
 
     /**
      * @var string
-     * format: Y-m-d
+     *             format: Y-m-d
      */
     private $date;
 
@@ -53,10 +54,10 @@ class Order implements ComponentInterface
         $code = null,
         $clientIp = null,
         $installment = 1,
-        $currency='TRY',
+        $currency = 'TRY',
         $loyaltyAmount = null,
         $paymentMethod = 'CCVISAMC',
-        $date=null,
+        $date = null,
         $timeout = null,
         $recurringPayment = false
     ) {
@@ -73,6 +74,7 @@ class Order implements ComponentInterface
 
     /**
      * @param string $clientIp
+     *
      * @return $this
      */
     public function setClientIp($clientIp)
@@ -92,6 +94,7 @@ class Order implements ComponentInterface
 
     /**
      * @param string $code
+     *
      * @return $this
      */
     public function setCode($code)
@@ -111,12 +114,13 @@ class Order implements ComponentInterface
 
     /**
      * @param string $currency
+     *
      * @return $this
      */
     public function setCurrency($currency)
     {
         $this->currency = $currency;
-        
+
         return $this;
     }
 
@@ -130,6 +134,7 @@ class Order implements ComponentInterface
 
     /**
      * @param string $date
+     *
      * @return $this
      */
     public function setDate($date)
@@ -149,6 +154,7 @@ class Order implements ComponentInterface
 
     /**
      * @param int $installment
+     *
      * @return $this
      */
     public function setInstallment($installment)
@@ -168,6 +174,7 @@ class Order implements ComponentInterface
 
     /**
      * @param float $loyaltyAmount
+     *
      * @return $this
      */
     public function setLoyaltyAmount($loyaltyAmount)
@@ -187,6 +194,7 @@ class Order implements ComponentInterface
 
     /**
      * @param string $paymentMethod
+     *
      * @return $this
      */
     public function setPaymentMethod($paymentMethod)
@@ -206,6 +214,7 @@ class Order implements ComponentInterface
 
     /**
      * @param int $timeout
+     *
      * @return $this
      */
     public function setTimeout($timeout)
@@ -222,7 +231,6 @@ class Order implements ComponentInterface
     {
         return $this->timeout;
     }
-
 
     /**
      * Gets the value of recurringPayment.
@@ -243,7 +251,7 @@ class Order implements ComponentInterface
      */
     public function setRecurringPayment($recurringPayment)
     {
-        $this->recurringPayment = (bool)$recurringPayment;
+        $this->recurringPayment = (bool) $recurringPayment;
 
         return $this;
     }

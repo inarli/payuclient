@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Serializer;
 
 use Payu\Configuration;
@@ -18,7 +19,7 @@ abstract class SerializerAbstract
 
     /**
      * @param RequestAbstract $request
-     * @param Configuration $configuration
+     * @param Configuration   $configuration
      */
     public function __construct(RequestAbstract $request, Configuration $configuration)
     {
@@ -34,21 +35,21 @@ abstract class SerializerAbstract
         /** @var $card \Payu\Component\Card */
         $card = $this->request->getCard();
 
-        return array(
+        return [
             'CC_NUMBER' => $card->getNumber(),
             'EXP_MONTH' => sprintf('%02d', $card->getMonth()),
-            'EXP_YEAR' => $card->getYear(),
-            'CC_CVV' => $card->getCvv(),
-            'CC_OWNER' => $card->getOwner()
-        );
+            'EXP_YEAR'  => $card->getYear(),
+            'CC_CVV'    => $card->getCvv(),
+            'CC_OWNER'  => $card->getOwner(),
+        ];
     }
 
     protected function calculateHash($rawData)
     {
         ksort($rawData);
         $buffer = '';
-        foreach($rawData as $key => $value) {
-            $buffer .= strlen($value) . $value;
+        foreach ($rawData as $key => $value) {
+            $buffer .= strlen($value).$value;
         }
 
         return hash_hmac('md5', $buffer, $this->configuration->getSecretKey());
@@ -58,4 +59,4 @@ abstract class SerializerAbstract
      * @return serialize
      */
     abstract public function serialize();
-} 
+}

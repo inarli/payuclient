@@ -1,4 +1,6 @@
-<?php namespace Payu\Test;
+<?php
+
+namespace Payu\Test;
 
 use Payu\Configuration;
 
@@ -7,36 +9,42 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     /**
      * @var Configuration
      */
-    protected  $configuration;
+    protected $configuration;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->configuration = new Configuration('TestMerchantId', 'TestSecretKey', 'TestPaymentEndpointUrl',
             'TestLoyaltyInquiryEndPointUrl');
     }
 
-    public function testConstructor() {
+    public function testConstructor()
+    {
         $this->assertEquals('TestMerchantId', $this->configuration->getMerchantId());
         $this->assertEquals('TestSecretKey', $this->configuration->getSecretKey());
         $this->assertEquals('TestPaymentEndpointUrl', $this->configuration->getPaymentEndpointUrl());
         $this->assertEquals('TestLoyaltyInquiryEndPointUrl', $this->configuration->getLoyaltyInquiryEndPointUrl());
     }
 
-    public function testSetMerchantId() {
+    public function testSetMerchantId()
+    {
         $this->configuration->setMerchantId('TestMerchantIdSetter');
         $this->assertEquals('TestMerchantIdSetter', $this->configuration->getMerchantId());
     }
 
-    public function testSetSecretKey() {
+    public function testSetSecretKey()
+    {
         $this->configuration->setSecretKey('TestSecretKeySetter');
         $this->assertEquals('TestSecretKeySetter', $this->configuration->getSecretKey());
     }
 
-    public function testSetPaymentEndpointUrl() {
+    public function testSetPaymentEndpointUrl()
+    {
         $this->configuration->setPaymentEndpointUrl('TestPaymentEndpointUrlSetter');
         $this->assertEquals('TestPaymentEndpointUrlSetter', $this->configuration->getPaymentEndpointUrl());
     }
 
-    public function testSetLoyaltyInquiryEndPointUrl() {
+    public function testSetLoyaltyInquiryEndPointUrl()
+    {
         $this->configuration->setLoyaltyInquiryEndPointUrl('TestLoyaltyInquiryEndPointUrlSetter');
         $this->assertEquals('TestLoyaltyInquiryEndPointUrlSetter', $this->configuration->getLoyaltyInquiryEndPointUrl());
     }

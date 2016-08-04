@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Validator;
 
 use Payu\Request\RequestAbstract;
@@ -18,11 +19,10 @@ abstract class ValidatorAbstract
         $this->request = $request;
     }
 
-
-
     /**
-     * @return void
      * @throws \Payu\Exception\ValidationError
+     *
+     * @return void
      */
     abstract public function validate();
-} 
+}
