@@ -1,6 +1,8 @@
 <?php
+
 namespace Payu;
 
+use Guzzle\Http\Client as httpClient;
 use Guzzle\Http\Exception\RequestException;
 use Payu\Builder\LoyaltyInquiryRequestBuilder;
 use Payu\Builder\PaymentRequestBuilder;
@@ -11,8 +13,6 @@ use Payu\Parser\ResponseParser;
 use Payu\Request\LoyaltyInquiryRequest;
 use Payu\Request\PaymentRequest;
 use Payu\Request\RequestAbstract;
-use Guzzle\Http\Client as httpClient;
-
 
 class Client
 {
@@ -47,46 +47,52 @@ class Client
 
     /**
      * @param RequestAbstract $request
-     * @param string $endpointUrl
-     * @return \Guzzle\Http\EntityBodyInterface|string
+     * @param string          $endpointUrl
+     *
      * @throws Exception\ConnectionError
+     *
+     * @return \Guzzle\Http\EntityBodyInterface|string
      */
     private function sendRequest(RequestAbstract $request, $endpointUrl)
     {
         $client = new HttpClient();
-        $client->setConfig(array(
-            'curl.options' => array(
+        $client->setConfig([
+            'curl.options' => [
                 CURLOPT_SSL_VERIFYPEER => false,
                 CURLOPT_SSL_VERIFYHOST => false,
-            )
-        ));
+            ],
+        ]);
         $httpRequest = $client->post($endpointUrl, null, $request->getRawData());
         try {
             return $httpRequest->send()->getBody();
-        } catch(RequestException $e) {
+        } catch (RequestException $e) {
             throw new ConnectionError($e->getMessage());
         }
     }
 
     /**
      * @param PaymentRequest $request
+     *
      * @return Response\PaymentResponse
      */
     public function makePayment(PaymentRequest $request)
     {
         $rawResponse = $this->sendRequest($request, $this->configuration->getPaymentEndpointUrl());
         $parser = new ResponseParser(new PaymentResponseParser(), $rawResponse);
+
         return $parser->parse();
     }
 
     /**
      * @param LoyaltyInquiryRequest $request
+     *
      * @return Response\LoyaltyInquiryResponse
      */
     public function makeLoyaltyInquiry(LoyaltyInquiryRequest $request)
     {
         $rawResponse = $this->sendRequest($request, $this->configuration->getLoyaltyInquiryEndPointUrl());
         $parser = new ResponseParser(new LoyaltyInquiryResponseParser(), $rawResponse);
+
         return $parser->parse();
     }
-} 
+}

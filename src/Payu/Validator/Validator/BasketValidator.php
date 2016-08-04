@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Validator\Validator;
 
 use Payu\Component\Basket;
@@ -7,13 +8,14 @@ use Payu\Exception\ValidationError;
 class BasketValidator extends ValidatorAbstract
 {
     /**
-     * @return void
      * @throws \Payu\Exception\ValidationError
+     *
+     * @return void
      */
     protected function validateObject()
     {
         $object = $this->request->getBasket();
-        if(!$object || !$object instanceof Basket) {
+        if (!$object || !$object instanceof Basket) {
             throw new ValidationError('Basket is not set.');
         }
     }
@@ -21,15 +23,15 @@ class BasketValidator extends ValidatorAbstract
     private function validateProducts()
     {
         /**
-         * @var $collection \Payu\Component\Basket
+         * @var \Payu\Component\Basket
          */
         $collection = $this->request->getBasket();
-        if(!$collection->count()) {
+        if (!$collection->count()) {
             throw new ValidationError('Basket does not be empty.');
         }
 
         /** @var $product \Payu\Component\Product */
-        foreach($collection as $product) {
+        foreach ($collection as $product) {
             $validator = new ProductValidator($product);
             $validator->validate();
             unset($validator);

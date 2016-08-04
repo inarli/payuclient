@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Serializer;
 
 class PaymentRequestSerializer extends SerializerAbstract
@@ -10,8 +11,8 @@ class PaymentRequestSerializer extends SerializerAbstract
     {
         /** @var $order \Payu\Component\Order */
         $order = $this->request->getOrder();
-        
-        $data = array(
+
+        $data = [
             'ORDER_REF'                    => $order->getCode(),
             'ORDER_DATE'                   => $order->getDate(),
             'PAY_METHOD'                   => $order->getPaymentMethod(),
@@ -19,8 +20,8 @@ class PaymentRequestSerializer extends SerializerAbstract
             'SELECTED_INSTALLMENTS_NUMBER' => $order->getInstallment(),
             'ORDER_TIMEOUT'                => $order->getTimeout(),
             'BACK_REF'                     => $this->configuration->getPaymentReturnPointUrl(),
-            'CLIENT_IP'                    => $order->getClientIp()
-        );
+            'CLIENT_IP'                    => $order->getClientIp(),
+        ];
 
         if ((float) $order->getLoyaltyAmount() != 0) {
             $data['USE_LOYALTY_POINTS'] = 'YES';
@@ -41,10 +42,10 @@ class PaymentRequestSerializer extends SerializerAbstract
      */
     private function serializeBilling()
     {
-        /** @var $billing  \Payu\Component\Billing */
+        /** @var $billing \Payu\Component\Billing */
         $billing = $this->request->getBilling();
 
-        return array(
+        return [
             'BILL_LNAME'       => $billing->getLastName(),
             'BILL_FNAME'       => $billing->getFirstName(),
             'BILL_EMAIL'       => $billing->getEmail(),
@@ -54,8 +55,8 @@ class PaymentRequestSerializer extends SerializerAbstract
             'BILL_ADDRESS'     => $billing->getAddress(),
             'BILL_ZIPCODE'     => $billing->getZipCode(),
             'BILL_CITY'        => $billing->getCity(),
-            'BILL_STATE'       => $billing->getState()
-        );
+            'BILL_STATE'       => $billing->getState(),
+        ];
     }
 
     /**
@@ -66,10 +67,10 @@ class PaymentRequestSerializer extends SerializerAbstract
         /** @var $delivery \Payu\Component\Delivery */
         $delivery = $this->request->getDelivery();
         if (!$delivery) {
-            return array();
+            return [];
         }
 
-        return array(
+        return [
             'DELIVERY_FNAME'       => $delivery->getFirstName(),
             'DELIVERY_LNAME'       => $delivery->getLastName(),
             'DELIVERY_EMAIL'       => $delivery->getEmail(),
@@ -79,8 +80,8 @@ class PaymentRequestSerializer extends SerializerAbstract
             'DELIVERY_ZIPCODE'     => $delivery->getZipCode(),
             'DELIVERY_CITY'        => $delivery->getCity(),
             'DELIVERY_STATE'       => $delivery->getState(),
-            'DELIVERY_COUNTRYCODE' => $delivery->getCountryCode()
-        );
+            'DELIVERY_COUNTRYCODE' => $delivery->getCountryCode(),
+        ];
     }
 
     /**
@@ -88,19 +89,19 @@ class PaymentRequestSerializer extends SerializerAbstract
      */
     private function serializeBasket()
     {
-        $i    = 0;
-        $data = array();
+        $i = 0;
+        $data = [];
         /** @var $product \Payu\Component\Product */
         foreach ($this->request->getBasket() as $product) {
-            $data['ORDER_PNAME[' . $i . ']']        = $product->getName();
-            $data['ORDER_PCODE[' . $i . ']']        = $product->getCode();
-            $data['ORDER_PRICE[' . $i . ']']        = $product->getPrice();
-            $data['ORDER_QTY[' . $i . ']']          = $product->getQuantity();
-            $data['ORDER_PINFO[' . $i . ']']        = $product->getInfo();
-            $data['ORDER_VER[' . $i . ']']          = $product->getVersion();
-            $data['ORDER_VAT[' . $i . ']']          = $product->getVat();
-            $data['ORDER_VAT[' . $i . ']']          = $product->getVat();
-            $data['ORDER_PRICE_TYPE[' . $i . ']']   = $product->getPriceType();
+            $data['ORDER_PNAME['.$i.']'] = $product->getName();
+            $data['ORDER_PCODE['.$i.']'] = $product->getCode();
+            $data['ORDER_PRICE['.$i.']'] = $product->getPrice();
+            $data['ORDER_QTY['.$i.']'] = $product->getQuantity();
+            $data['ORDER_PINFO['.$i.']'] = $product->getInfo();
+            $data['ORDER_VER['.$i.']'] = $product->getVersion();
+            $data['ORDER_VAT['.$i.']'] = $product->getVat();
+            $data['ORDER_VAT['.$i.']'] = $product->getVat();
+            $data['ORDER_PRICE_TYPE['.$i.']'] = $product->getPriceType();
             $i++;
         }
 
@@ -120,8 +121,8 @@ class PaymentRequestSerializer extends SerializerAbstract
             $this->serializeBasket()
         );
 
-        $filteredData               = array_filter($concatenatedData);
-        $filteredData['MERCHANT']   = $this->configuration->getMerchantId();
+        $filteredData = array_filter($concatenatedData);
+        $filteredData['MERCHANT'] = $this->configuration->getMerchantId();
         $filteredData['ORDER_HASH'] = $this->calculateHash($filteredData);
 
         return $filteredData;

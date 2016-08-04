@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Request;
 
 abstract class RequestAbstract
@@ -10,11 +11,13 @@ abstract class RequestAbstract
 
     /**
      * @param array $rawData
+     *
      * @return $this
      */
     public function setRawData(array $rawData)
     {
         $this->rawData = $rawData;
+
         return $this;
     }
 
@@ -25,4 +28,4 @@ abstract class RequestAbstract
     {
         return $this->rawData;
     }
-} 
+}

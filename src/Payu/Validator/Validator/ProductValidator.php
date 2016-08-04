@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Validator\Validator;
 
 use Payu\Component\Product;
@@ -17,12 +18,13 @@ class ProductValidator extends ValidatorAbstract
     }
 
     /**
-     * @return void
      * @throws \Payu\Exception\ValidationError
+     *
+     * @return void
      */
     protected function validateObject()
     {
-        if(!$this->product || !$this->product instanceof Product) {
+        if (!$this->product || !$this->product instanceof Product) {
             throw new ValidationError('Basket items must be instance of Product');
         }
     }

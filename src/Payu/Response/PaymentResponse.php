@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Response;
 
 class PaymentResponse extends ResponseAbstract
@@ -19,7 +20,7 @@ class PaymentResponse extends ResponseAbstract
     protected $url3DS;
 
     /**
-     * @param integer $status
+     * @param int    $status
      * @param string $code
      * @param string $message
      * @param string $transactionId
@@ -36,6 +37,7 @@ class PaymentResponse extends ResponseAbstract
 
     /**
      * @param string $transactionId
+     *
      * @return $this;
      */
     public function setTransactionId($transactionId)
@@ -82,4 +84,4 @@ class PaymentResponse extends ResponseAbstract
     {
         $this->url3DS = $url3DS;
     }
-} 
+}

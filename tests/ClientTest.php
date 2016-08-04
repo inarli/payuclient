@@ -1,11 +1,13 @@
-<?php namespace Payu\Test;
+<?php
 
+namespace Payu\Test;
+
+use Payu\Builder\LoyaltyInquiryRequestBuilder;
+use Payu\Builder\PaymentRequestBuilder;
 use Payu\Client;
 use Payu\Configuration;
-use Payu\Response\PaymentResponse;
-use Payu\Builder\PaymentRequestBuilder;
 use Payu\Response\LoyaltyInquiryResponse;
-use Payu\Builder\LoyaltyInquiryRequestBuilder;
+use Payu\Response\PaymentResponse;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {

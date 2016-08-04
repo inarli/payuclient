@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Request;
 
 class PaymentRequest extends RequestAbstract
@@ -30,11 +31,13 @@ class PaymentRequest extends RequestAbstract
 
     /**
      * @param \Payu\Component\Basket $basket
+     *
      * @return $this
      */
     public function setBasket($basket)
     {
         $this->basket = $basket;
+
         return $this;
     }
 
@@ -48,11 +51,13 @@ class PaymentRequest extends RequestAbstract
 
     /**
      * @param \Payu\Component\Billing $billing
+     *
      * @return $this
      */
     public function setBilling($billing)
     {
         $this->billing = $billing;
+
         return $this;
     }
 
@@ -66,11 +71,13 @@ class PaymentRequest extends RequestAbstract
 
     /**
      * @param \Payu\Component\Card $card
+     *
      * @return $this
      */
     public function setCard($card)
     {
         $this->card = $card;
+
         return $this;
     }
 
@@ -84,11 +91,13 @@ class PaymentRequest extends RequestAbstract
 
     /**
      * @param \Payu\Component\Delivery $delivery
+     *
      * @return $this
      */
     public function setDelivery($delivery)
     {
         $this->delivery = $delivery;
+
         return $this;
     }
 
@@ -102,11 +111,13 @@ class PaymentRequest extends RequestAbstract
 
     /**
      * @param \Payu\Component\Order $order
+     *
      * @return $this
      */
     public function setOrder($order)
     {
         $this->order = $order;
+
         return $this;
     }
 
@@ -126,4 +137,4 @@ class PaymentRequest extends RequestAbstract
         $this->setDelivery($delivery);
         $this->setBasket($basket);
     }
-} 
+}

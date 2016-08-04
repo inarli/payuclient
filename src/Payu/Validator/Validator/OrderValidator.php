@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Validator\Validator;
 
 use Payu\Component\Order;
@@ -7,15 +8,16 @@ use Payu\Exception\ValidationError;
 class OrderValidator extends ValidatorAbstract
 {
     /**
-     * @return void
      * @throws \Payu\Exception\ValidationError
+     *
+     * @return void
      */
     public function validate()
     {
         parent::validate();
 
         /**
-         * @var $object \Payu\Component\Order
+         * @var \Payu\Component\Order
          */
         $object = $this->request->getOrder();
 
@@ -28,13 +30,14 @@ class OrderValidator extends ValidatorAbstract
     }
 
     /**
-     * @return void
      * @throws \Payu\Exception\ValidationError
+     *
+     * @return void
      */
     protected function validateObject()
     {
         /**
-         * @var $object \Payu\Component\Order
+         * @var \Payu\Component\Order
          */
         $object = $this->request->getOrder();
 
@@ -46,8 +49,10 @@ class OrderValidator extends ValidatorAbstract
     /**
      * Filters and validates given currency code.
      *
-     * @param  string $code Currency code to filter and validate.
+     * @param string $code Currency code to filter and validate.
+     *
      * @throws \InvalidArgumentException
+     *
      * @return string Three letter currency code.
      */
     public static function filterAndValidateCurrencyCode($code)
@@ -70,7 +75,7 @@ class OrderValidator extends ValidatorAbstract
      */
     public static function getAvailableCurrencies()
     {
-        return array(
+        return [
           'AFN' => 'Afghani',
           'EUR' => 'Euro',
           'ALL' => 'Lek',
@@ -248,6 +253,6 @@ class OrderValidator extends ValidatorAbstract
           'XPD' => 'Palladium',
           'XPT' => 'Platinum',
           'XAG' => 'Silver',
-        );
+        ];
     }
 }

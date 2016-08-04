@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Builder;
 
 use Payu\Component\Basket;
@@ -37,21 +38,22 @@ class PaymentRequestBuilder extends BuilderAbstract
      * @param $code
      * @param $clientIp
      * @param string $currency
-     * @param int $installment
-     * @param null $loyaltyAmount
+     * @param int    $installment
+     * @param null   $loyaltyAmount
      * @param string $paymentMethod
-     * @param null $date
-     * @param null $timeout
+     * @param null   $date
+     * @param null   $timeout
+     *
      * @return $this
      */
     public function buildOrder(
         $code,
         $clientIp,
         $installment = 1,
-        $currency='TRY',
+        $currency = 'TRY',
         $loyaltyAmount = null,
         $paymentMethod = 'CCVISAMC',
-        $date=null,
+        $date = null,
         $timeout = null,
         $recurringPayment = false
     ) {
@@ -66,16 +68,19 @@ class PaymentRequestBuilder extends BuilderAbstract
             $timeout,
             $recurringPayment
         );
+
         return $this;
     }
 
     /**
      * @param Order $order
+     *
      * @return $this
      */
     public function setOrder(Order $order)
     {
         $this->order = $order;
+
         return $this;
     }
 
@@ -90,6 +95,7 @@ class PaymentRequestBuilder extends BuilderAbstract
      * @param null $city
      * @param null $state
      * @param null $countryCode
+     *
      * @return $this
      */
     public function buildBilling(
@@ -103,8 +109,7 @@ class PaymentRequestBuilder extends BuilderAbstract
         $city = null,
         $state = null,
         $countryCode = null
-    )
-    {
+    ) {
         $this->billing = new Billing(
             $firstName,
             $lastName,
@@ -117,16 +122,19 @@ class PaymentRequestBuilder extends BuilderAbstract
             $state,
             $countryCode
         );
+
         return $this;
     }
 
     /**
      * @param Billing $billing
+     *
      * @return $this
      */
     public function setBilling(Billing $billing)
     {
         $this->billing = $billing;
+
         return $this;
     }
 
@@ -141,6 +149,7 @@ class PaymentRequestBuilder extends BuilderAbstract
      * @param null $city
      * @param null $state
      * @param null $countryCode
+     *
      * @return $this
      */
     public function buildDeliverys(
@@ -154,8 +163,7 @@ class PaymentRequestBuilder extends BuilderAbstract
         $city = null,
         $state = null,
         $countryCode = null
-    )
-    {
+    ) {
         $this->delivery = new Delivery(
             $firstName,
             $lastName,
@@ -168,16 +176,19 @@ class PaymentRequestBuilder extends BuilderAbstract
             $state,
             $countryCode
         );
+
         return $this;
     }
 
     /**
      * @param Delivery $delivery
+     *
      * @return $this
      */
     public function setDelivery(Delivery $delivery)
     {
         $this->delivery = $delivery;
+
         return $this;
     }
 
@@ -203,18 +214,20 @@ class PaymentRequestBuilder extends BuilderAbstract
         $vat = null,
         $priceType = null
     ) {
-
         $this->basket->add(new Product($name, $code, $quantity, $info, $price, $version, $vat, $priceType));
+
         return $this;
     }
 
     /**
      * @param Product $product
+     *
      * @return $this
      */
     public function addProduct(Product $product)
     {
         $this->basket->add($product);
+
         return $this;
     }
 

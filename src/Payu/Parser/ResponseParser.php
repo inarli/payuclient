@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Parser;
 
 class ResponseParser
@@ -15,7 +16,7 @@ class ResponseParser
 
     /**
      * @param ParserInterface $parser
-     * @param string $rawResponse
+     * @param string          $rawResponse
      */
     public function __construct(ParserInterface $parser, $rawResponse)
     {
@@ -30,4 +31,4 @@ class ResponseParser
     {
         return $this->parser->parse($this->rawResponse);
     }
-} 
+}

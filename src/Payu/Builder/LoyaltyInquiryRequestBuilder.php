@@ -1,11 +1,12 @@
 <?php
+
 namespace Payu\Builder;
 
-use Payu\Configuration,
-    Payu\Component\Currency,
-    Payu\Request\LoyaltyInquiryRequest,
-    Payu\Validator\LoyaltyInquiryRequestValidator,
-    Payu\Serializer\LoyaltyInquiryRequestSerializer;
+use Payu\Component\Currency;
+use Payu\Configuration;
+use Payu\Request\LoyaltyInquiryRequest;
+use Payu\Serializer\LoyaltyInquiryRequestSerializer;
+use Payu\Validator\LoyaltyInquiryRequestValidator;
 
 class LoyaltyInquiryRequestBuilder extends BuilderAbstract
 {
@@ -30,8 +31,10 @@ class LoyaltyInquiryRequestBuilder extends BuilderAbstract
         $this->currency = $currency;
     }
 
-    public function buildCurrency($currency) {
+    public function buildCurrency($currency)
+    {
         $this->currency = new Currency($currency);
+
         return $this;
     }
 

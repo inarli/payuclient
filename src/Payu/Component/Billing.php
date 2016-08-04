@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Component;
 
 class Billing implements ComponentInterface
@@ -55,11 +56,13 @@ class Billing implements ComponentInterface
 
     /**
      * @param string $address
+     *
      * @return $this
      */
     public function setAddress($address)
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -73,11 +76,13 @@ class Billing implements ComponentInterface
 
     /**
      * @param string $city
+     *
      * @return $this
      */
     public function setCity($city)
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -91,11 +96,13 @@ class Billing implements ComponentInterface
 
     /**
      * @param string $countryCode
+     *
      * @return $this
      */
     public function setCountryCode($countryCode)
     {
         $this->countryCode = $countryCode;
+
         return $this;
     }
 
@@ -109,11 +116,13 @@ class Billing implements ComponentInterface
 
     /**
      * @param string $email
+     *
      * @return $this
      */
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -127,11 +136,13 @@ class Billing implements ComponentInterface
 
     /**
      * @param string $fax
+     *
      * @return $this
      */
     public function setFax($fax)
     {
         $this->fax = $fax;
+
         return $this;
     }
 
@@ -145,11 +156,13 @@ class Billing implements ComponentInterface
 
     /**
      * @param string $firstName
+     *
      * @return $this
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -163,11 +176,13 @@ class Billing implements ComponentInterface
 
     /**
      * @param string $lastName
+     *
      * @return $this
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
@@ -181,11 +196,13 @@ class Billing implements ComponentInterface
 
     /**
      * @param string $phone
+     *
      * @return $this
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -199,11 +216,13 @@ class Billing implements ComponentInterface
 
     /**
      * @param string $state
+     *
      * @return $this
      */
     public function setState($state)
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -217,11 +236,13 @@ class Billing implements ComponentInterface
 
     /**
      * @param string $zipCode
+     *
      * @return $this
      */
     public function setZipCode($zipCode)
     {
         $this->zipCode = $zipCode;
+
         return $this;
     }
 
@@ -234,15 +255,15 @@ class Billing implements ComponentInterface
     }
 
     public function __construct(
-        $firstName = null, 
-        $lastName = null, 
-        $email = null, 
-        $phone = null, 
-        $fax = null, 
-        $address = null, 
-        $zipCode = null, 
-        $city = null, 
-        $state = null, 
+        $firstName = null,
+        $lastName = null,
+        $email = null,
+        $phone = null,
+        $fax = null,
+        $address = null,
+        $zipCode = null,
+        $city = null,
+        $state = null,
         $countryCode = 'TR'
     ) {
         $this->setFirstName($firstName);
@@ -256,4 +277,4 @@ class Billing implements ComponentInterface
         $this->setState($state);
         $this->setCountryCode($countryCode);
     }
-} 
+}

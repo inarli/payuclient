@@ -1,27 +1,30 @@
 <?php
+
 namespace Payu\Parser;
 
+use Exception;
 use Guzzle\Http\EntityBody;
 use Payu\Exception\BadResponseError;
 use Payu\Response\PaymentResponse;
 use Payu\Response\ResponseAbstract;
-use \SimpleXMLElement;
-use \Exception;
+use SimpleXMLElement;
 
 class PaymentResponseParser implements ParserInterface
 {
     /**
      * @param EntityBody|string|array $rawData
-     * @return PaymentResponse|ResponseAbstract
+     *
      * @throws \Payu\Exception\BadResponseError
+     *
+     * @return PaymentResponse|ResponseAbstract
      */
     public function parse($rawData)
     {
         try {
             $xml = ($rawData instanceof EntityBody || is_string($rawData)) ?
                                     new SimpleXMLElement($rawData) : (object) $rawData;
-        } catch(Exception $e) {
-            throw new BadResponseError('Unexpected response received from provider. Response: ' . $rawData);
+        } catch (Exception $e) {
+            throw new BadResponseError('Unexpected response received from provider. Response: '.$rawData);
         }
 
         $status = (string) $xml->STATUS;
@@ -42,7 +45,7 @@ class PaymentResponseParser implements ParserInterface
         if ($status == 'SUCCESS') {
             if ($code == 'AUTHORIZED') {
                 $statusCode = ResponseAbstract::STATUS_APPROVED;
-            } else if ($code == '3DS_ENROLLED') {
+            } elseif ($code == '3DS_ENROLLED') {
                 $statusCode = ResponseAbstract::STATUS_UNAUTHORIZED;
             }
         }
@@ -52,7 +55,7 @@ class PaymentResponseParser implements ParserInterface
 
     private function parseTransactionId($refNo, $statusCode)
     {
-        return in_array($statusCode, array(ResponseAbstract::STATUS_APPROVED, ResponseAbstract::STATUS_UNAUTHORIZED)) ?
+        return in_array($statusCode, [ResponseAbstract::STATUS_APPROVED, ResponseAbstract::STATUS_UNAUTHORIZED]) ?
                 (string) $refNo : null;
     }
 }

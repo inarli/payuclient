@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu\Builder;
 
 use Payu\Component\Card;
@@ -22,21 +23,25 @@ abstract class BuilderAbstract
      * @param $month
      * @param $year
      * @param null $owner
+     *
      * @return $this
      */
     public function buildCard($number, $cvv, $month, $year, $owner = null)
     {
         $this->card = new Card($number, $cvv, $month, $year, $owner);
+
         return $this;
     }
 
     /**
      * @param Card $card
+     *
      * @return $this
      */
     public function setCard(Card $card)
     {
         $this->card = $card;
+
         return $this;
     }
 
@@ -49,4 +54,4 @@ abstract class BuilderAbstract
      * @return \Payu\Response\ResponseAbstract
      */
     abstract public function build();
-} 
+}

@@ -1,16 +1,16 @@
 <?php
+
 namespace Payu\Validator\Validator;
 
 class DeliveryValidator extends ValidatorAbstract
 {
-
     /**
-     * @return void
      * @throws \Payu\Exception\ValidationError
+     *
+     * @return void
      */
     public function validate()
     {
-
     }
 
     /**
@@ -18,6 +18,5 @@ class DeliveryValidator extends ValidatorAbstract
      */
     protected function validateObject()
     {
-
     }
 }

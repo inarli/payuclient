@@ -1,4 +1,5 @@
 <?php
+
 namespace Payu;
 
 class Configuration
@@ -40,11 +41,13 @@ class Configuration
 
     /**
      * @param string $loyaltyInquiryEndPointUrl
+     *
      * @return $this
      */
     public function setLoyaltyInquiryEndPointUrl($loyaltyInquiryEndPointUrl)
     {
         $this->loyaltyInquiryEndPointUrl = $loyaltyInquiryEndPointUrl;
+
         return $this;
     }
 
@@ -58,11 +61,13 @@ class Configuration
 
     /**
      * @param string $merchantId
+     *
      * @return $this
      */
     public function setMerchantId($merchantId)
     {
         $this->merchantId = $merchantId;
+
         return $this;
     }
 
@@ -76,11 +81,13 @@ class Configuration
 
     /**
      * @param string $paymentEndpointUrl
+     *
      * @return $this
      */
     public function setPaymentEndpointUrl($paymentEndpointUrl)
     {
         $this->paymentEndpointUrl = $paymentEndpointUrl;
+
         return $this;
     }
 
@@ -94,11 +101,13 @@ class Configuration
 
     /**
      * @param string $secretKey
+     *
      * @return $this
      */
     public function setSecretKey($secretKey)
     {
         $this->secretKey = $secretKey;
+
         return $this;
     }
 

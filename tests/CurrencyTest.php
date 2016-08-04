@@ -1,6 +1,6 @@
 <?php
 /**
- * Currency test
+ * Currency test.
  */
 namespace Payu\Test;
 
@@ -14,22 +14,22 @@ class CurrencyTest extends \PHPUnit_Framework_TestCase
     public function testGoodCurrencyCodeWorks($code, $expected)
     {
         $cur = (string) new Currency($code);
-        
+
         $this->assertEquals($cur, $expected);
     }
-    
+
     public function goodCurrencyProvider()
     {
-        return array(
-          array('TRY', 'TRY'),
-          array('EUR', 'EUR'),
-          array('GBP', 'GBP'),
-          array('USD', 'USD'),
+        return [
+          ['TRY', 'TRY'],
+          ['EUR', 'EUR'],
+          ['GBP', 'GBP'],
+          ['USD', 'USD'],
           // Lowercase
-          array('usd', 'USD'),
-          array('gbp', 'GBP'),
-          array('eur', 'EUR'),
-          array('try', 'TRY'),
-        );
+          ['usd', 'USD'],
+          ['gbp', 'GBP'],
+          ['eur', 'EUR'],
+          ['try', 'TRY'],
+        ];
     }
 }
